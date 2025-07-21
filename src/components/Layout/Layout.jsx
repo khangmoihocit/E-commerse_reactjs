@@ -1,9 +1,13 @@
+import styles from './styles.module.scss';
 import React from 'react';
 
+
 const MainLayout = ({children}) => {
+    const {wrapLayout, container} = styles;
+
     return (
-        <main>
-            <div>{children}</div>
+        <main className={wrapLayout}>
+            <div className={container}>{children}</div>
         </main>
     );
 };
