@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-// Chuyển hàm helper ra ngoài vì nó không phụ thuộc vào component
 const formatNumber = number => String(number).padStart(2, '0');
 
 const CountdownTimer = ({ targetDate }) => {
-    // 1. Di chuyển hàm tính toán vào trong để nó có thể truy cập `targetDate`
-    //    nhưng không cần định nghĩa lại nếu không cần thiết (useCallback có thể dùng ở đây nhưng không bắt buộc)
     const calculateTimeLeft = () => {
         const difference = +new Date(targetDate) - +new Date();
         let timeLeft = {};
@@ -21,20 +18,15 @@ const CountdownTimer = ({ targetDate }) => {
         return timeLeft;
     };
 
-    // 2. Dùng lazy initial state để hàm chỉ chạy 1 lần lúc khởi tạo
     const [timeLeft, setTimeLeft] = useState(() => calculateTimeLeft());
 
-    // 3. Dùng useEffect với dependency array và setInterval
     useEffect(() => {
         const intervalId = setInterval(() => {
             setTimeLeft(calculateTimeLeft());
         }, 1000);
-
-        // Hàm dọn dẹp
         return () => clearInterval(intervalId);
     }, [targetDate]); // Chạy lại effect nếu targetDate thay đổi
 
-    // 4. Dùng .map() để render và xử lý trường hợp hết giờ
     const timerComponents = Object.keys(timeLeft).map(interval => {
         return (
             <span key={interval}>
@@ -45,7 +37,7 @@ const CountdownTimer = ({ targetDate }) => {
 
     return (
         <div>
-            {timerComponents.length ? timerComponents : <span>Hết giờ! 🥳</span>}
+            {timerComponents.length ? timerComponents : <span>Hết giờ!</span>}
         </div>
     );
 };
