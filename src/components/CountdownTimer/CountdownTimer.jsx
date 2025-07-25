@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import styles from './styles.module.scss';
 
 const formatNumber = number => String(number).padStart(2, '0');
 
 const CountdownTimer = ({ targetDate }) => {
+    const { box, title } = styles;
+
     const calculateTimeLeft = () => {
         const difference = +new Date(targetDate) - +new Date();
         let timeLeft = {};
 
         if (difference > 0) {
             timeLeft = {
-                days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-                hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-                minutes: Math.floor((difference / 1000 / 60) % 60),
-                seconds: Math.floor((difference / 1000) % 60),
+                Days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+                Hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+                Mins: Math.floor((difference / 1000 / 60) % 60),
+                Secs: Math.floor((difference / 1000) % 60)
             };
         }
         return timeLeft;
@@ -29,16 +32,15 @@ const CountdownTimer = ({ targetDate }) => {
 
     const timerComponents = Object.keys(timeLeft).map(interval => {
         return (
-            <span key={interval}>
-                {formatNumber(timeLeft[interval])} {interval}{' '}
+            <span className={box} key={interval}>
+                {formatNumber(timeLeft[interval])}{' '}
+                <span className={title}>{interval}</span>{' '}
             </span>
         );
     });
 
     return (
-        <div>
-            {timerComponents.length ? timerComponents : <span>Hết giờ!</span>}
-        </div>
+        <>{timerComponents.length ? timerComponents : <span>Hết giờ!</span>}</>
     );
 };
 
