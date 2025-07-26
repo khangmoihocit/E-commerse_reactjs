@@ -1,19 +1,15 @@
-import CountdownTimer from '@components/CountdownTimer/CountdownTimer';
 import MainLayout from '@components/Layout/Layout';
 import styles from './styles.module.scss';
 import React from 'react';
-import CountdownBanner from '@components/CountdownBanner/CountdownBanner';
 import ProductItem from '@components/ProductItem/ProductItem';
 
-const HeadlingListProduct = ({ data }) => {
-    const { container, containerItem } = styles;
+const PopularProduct = ({data}) => {
+    const { container } = styles;
 
-    console.log(data);
     return (
-        <MainLayout>
-            <div className={container}>
-                <CountdownBanner />
-                <div className={containerItem}>
+        <>
+            <MainLayout>
+                <div className={container}>
                     {data.map(item => {
                         return (
                             <ProductItem
@@ -26,9 +22,9 @@ const HeadlingListProduct = ({ data }) => {
                         );
                     })}
                 </div>
-            </div>
-        </MainLayout>
+            </MainLayout>
+        </>
     );
 };
 
-export default HeadlingListProduct;
+export default PopularProduct;
