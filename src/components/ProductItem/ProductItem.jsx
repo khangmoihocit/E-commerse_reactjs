@@ -5,10 +5,10 @@ import reloadIcon from '@icons/svgs/reloadIcon.svg';
 import cartIcon from '@icons/svgs/cartIcon.svg';
 
 const ProductItem = ({src, preSrc, name, price}) => {
-    const { boxImg, showImgWhenHover, showFuncWhenHover, boxIcon,innerTitle, innerPrice } = styles;
+    const { container, boxImg, showImgWhenHover, showFuncWhenHover, boxIcon,innerTitle, innerPrice } = styles;
 
     return (
-        <div>
+        <div className={container}>
             <div className={boxImg}>
                 <img
                     src={src}

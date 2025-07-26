@@ -7,6 +7,7 @@ import AdvanceHeadling from '@components/AdvanceHeadling/AdvanceHeadling';
 import HeadlingListProduct from '@components/HeadingListProduct/HeadingListProduct';
 import getProducts from '@/apis/productsService';
 import PopularProduct from '@components/PopularProduct/PopularProduct';
+import SaleHomePage from '@components/SaleHomePage/SaleHomePage';
 
 const HomePage = () => {
     const { container } = styles;
@@ -28,6 +29,7 @@ const HomePage = () => {
                 <AdvanceHeadling />
                 <HeadlingListProduct data={listProducts.slice(0, 2)}/>
                 <PopularProduct data={listProducts.slice(2, listProducts.length)} />
+                <SaleHomePage />
             </div>
         </div>
     );

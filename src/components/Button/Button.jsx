@@ -1,11 +1,19 @@
 import React from 'react';
 import styles from './styles.module.scss';
+import classNames from 'classnames';
 
-const Button = ({content}) => {
-    const {btn} = styles;
+const Button = ({ content, isPrimary = true }) => {
+    const { btn, primaryBtn, seconddaryBtn } = styles;
     return (
         <div>
-            <button className={btn}>{content}</button>
+            <button
+                className={classNames(btn, {
+                    [primaryBtn]: isPrimary,
+                    [seconddaryBtn]: !isPrimary
+                })}
+            >
+                {content}
+            </button>
         </div>
     );
 };
