@@ -29,7 +29,7 @@
     border: 1px solid $primary_color;
 
     &:hover {
-        background-color: transparent;
+        background-color: $primary_color;
         color: $white_color;
     }
 }
