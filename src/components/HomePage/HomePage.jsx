@@ -8,6 +8,7 @@ import HeadlingListProduct from '@components/HeadingListProduct/HeadingListProdu
 import getProducts from '@/apis/productsService';
 import PopularProduct from '@components/PopularProduct/PopularProduct';
 import SaleHomePage from '@components/SaleHomePage/SaleHomePage';
+import Footer from '@components/Footer/Footer';
 
 const HomePage = () => {
     const { container } = styles;
@@ -30,6 +31,7 @@ const HomePage = () => {
                 <HeadlingListProduct data={listProducts.slice(0, 2)}/>
                 <PopularProduct data={listProducts.slice(2, listProducts.length)} />
                 <SaleHomePage />
+                <Footer />
             </div>
         </div>
     );
