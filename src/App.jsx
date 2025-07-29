@@ -1,14 +1,25 @@
-import HomePage from '@components/HomePage/HomePage';
-import React from 'react';
-
+import React, { Suspense } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import routers from '@/routers/routers';
 
 function App() {
-
-  return (
-    <>
-        <HomePage />
-    </>
-  )
+    return (
+        <BrowserRouter>
+            <Suspense fallback={<div>Loading...</div>}>
+                <Routes>
+                    {routers.map((item, index) => {
+                        return (
+                            <Route
+                                path={item.path}
+                                element={<item.component />}
+                                key={index}
+                            />
+                        );
+                    })}
+                </Routes>
+            </Suspense>
+        </BrowserRouter>
+    );
 }
 
-export default App
+export default App;
