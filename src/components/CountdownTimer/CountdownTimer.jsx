@@ -40,7 +40,7 @@ const CountdownTimer = ({ targetDate }) => {
     });
 
     return (
-        <>{timerComponents.length ? timerComponents : <span>Hết giờ!</span>}</>
+        <>{timerComponents.length ? timerComponents : <span className={box}>Hết giờ!</span>}</>
     );
 };
 
