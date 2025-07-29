@@ -22,7 +22,7 @@ const HomePage = () => {
 
     return (
         <div>
-            <div className={container}>
+            <div className={container} style={{marginBottom: '500px'}}>
                 <Header />
                 <Banner />
                 <Info />
