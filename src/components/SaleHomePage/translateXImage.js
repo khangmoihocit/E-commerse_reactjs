@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-const useTranslateXImage = ()=>{
+const useTranslateXImage = () => {
     const [scrollDriction, setScrollDriction] = useState(null);
     const previousScrollPosition = useRef(0);
     const [translateXPosition, setTranslateXPosition] = useState(30);
@@ -38,7 +38,9 @@ const useTranslateXImage = ()=>{
     }, []);
 
     return {
-        translateXPosition, handleTranslateX, scrollPosition
+        translateXPosition,
+        handleTranslateX,
+        scrollPosition
     };
 };
 
