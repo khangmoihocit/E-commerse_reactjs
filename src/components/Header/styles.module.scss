@@ -1,16 +1,33 @@
 @import '@styles/mixins.module.scss';
 @import '@styles/variables.module.scss';
 
-.container{
+.container {
     @include flex_box_custom(center, center, 0px);
 
-    position: absolute;
-    top: 0;
     left: 0;
     right: 0;
 }
 
-.containerHeader{
+.topHeader {
+    position: absolute;
+    top: 0;
+}
+
+.fixedHeader {
+    position: fixed;
+    top: -83px;
+    z-index: 99;
+
+    background-color: #FFFFFFE6;
+    box-shadow: 2px 0 12px 0 rgba(0, 0, 0, .15);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+
+    transform: translateY(83px);
+    transition: transform 0.7s ease;
+}
+
+.containerHeader {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -18,19 +35,19 @@
     width: 1250px;
 }
 
-.containerBoxIcon{
+.containerBoxIcon {
     @include flex_box_custom(center, center, 10px);
 }
 
-.containerBox{
+.containerBox {
     @include flex_box_custom(center, center, 20px);
 }
 
-.containerMenu{
+.containerMenu {
     @include flex_box_custom(center, center, 40px);
 }
 
-.boxIcon{
+.boxIcon {
     @include radius_common(50%);
     @include flex_box_custom(center, center, 0);
     background-color: $primary_color;
@@ -38,14 +55,14 @@
     height: 26px;
 }
 
-.menu{
+.menu {
     cursor: pointer;
     padding-top: 9px;
     font-size: 15px;
     color: $primary_color;
 }
 
-.menu::after{
+.menu::after {
     content: '';
     display: block;
     width: 100%;
@@ -59,7 +76,7 @@
     transition: transform 300ms, opacity 500ms;
 }
 
-.menu:hover::after{
+.menu:hover::after {
     opacity: 1;
     transform: scale(1);
 }
