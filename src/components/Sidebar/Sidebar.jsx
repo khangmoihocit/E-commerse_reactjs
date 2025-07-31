@@ -3,6 +3,7 @@ import styles from './styles.module.scss';
 import { SideBarContext } from '@/contexts/SidebarProvider';
 import { AiOutlineClose } from 'react-icons/ai';
 import classNames from 'classnames';
+import Login from '@components/ContentSideBar/Login/Login';
 
 const Sidebar = () => {
     const { container, overlay, sidebar, sliceSideBar, boxIcon } = styles;
@@ -30,6 +31,8 @@ const Sidebar = () => {
                         <AiOutlineClose />
                     </div>
                 )}
+
+                <Login />
             </div>
         </div>
     );
