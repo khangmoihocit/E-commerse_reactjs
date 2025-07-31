@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import BoxIcon from '@components/Header/BoxIcon/BoxIcon';
 import Menu from '@components/Header/Menu/Menu';
 import { dataBoxIcon, dataMenu } from '@components/Header/constants';
@@ -9,6 +9,7 @@ import reloadIcon from '@icons/svgs/reloadIcon.svg';
 import cartIcon from '@icons/svgs/cartIcon.svg';
 import useScrollHandling from '@/hooks/useScrollHandling';
 import classNames from 'classnames';
+import { SideBarContext } from '@/contexts/SidebarProvider';
 
 const Header = () => {
     const {
@@ -23,6 +24,7 @@ const Header = () => {
 
     const { scrollPosition } = useScrollHandling();
     const [fixedPosition, setFixedPosition] = useState(false);
+    const {isOpen, setIsOpen} = useContext(SideBarContext);
 
     useEffect(() => {
         setFixedPosition(scrollPosition > 80 ? true : false);
@@ -65,7 +67,7 @@ const Header = () => {
                     <div className={containerMenu}>
                         {dataMenu.slice(3, dataMenu.length).map(item => {
                             return (
-                                <Menu content={item.content} href={item.href} />
+                                <Menu content={item.content} href={item.href} setIsOpen={setIsOpen}/>
                             );
                         })}
                     </div>
