@@ -1,11 +1,11 @@
 import React from 'react';
-import styles from "../styles.module.scss";
+import styles from '../styles.module.scss';
 
-const Menu = ({content, href}) => {
-    const {menu} = styles;
+const Menu = ({ content, href, setIsOpen }) => {
+    const { menu } = styles;
 
     return (
-        <div className={menu}>
+        <div className={menu} onClick={() => setIsOpen(true)}>
             {content}
         </div>
     );
