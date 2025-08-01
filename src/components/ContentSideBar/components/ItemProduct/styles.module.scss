@@ -23,7 +23,7 @@
     }
 
     .boxContent {
-        @include flex_box_custom(center, flex-start, 15px);
+        @include flex_box_custom(center, flex-start, 0px);
         flex-direction: column;
 
         .title {
@@ -35,9 +35,16 @@
             text-overflow: ellipsis;
         }
 
+        .size{
+            color: #9e9e9e;
+            margin-top: 7px;
+            font-size: 14px;
+        }
+
         .price {
             font-size: 14px;
             color: $thr_color;
+            margin-top: 10px;
         }
     }
 

@@ -17,7 +17,7 @@ const Compare = () => {
                 />
                 <ItemProduct />
             </div>
-            <div>
+            <div style={{ width: '100%' }}>
                 <Button content={'VIEW COMPARE'} />
             </div>
         </div>
