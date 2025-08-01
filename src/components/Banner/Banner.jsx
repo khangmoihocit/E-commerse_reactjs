@@ -13,7 +13,9 @@ const Banner = () => {
                     Make yours celebrations even more special this years with
                     beautiful.
                 </div>
-                <Button content={'Go to shop'}/>
+                <div style={{width: '176px'}}>
+                    <Button content={'Go to shop'}/>
+                </div>
             </div>
         </div>
     );
