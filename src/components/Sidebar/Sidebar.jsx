@@ -4,13 +4,31 @@ import { SideBarContext } from '@/contexts/SidebarProvider';
 import { AiOutlineClose } from 'react-icons/ai';
 import classNames from 'classnames';
 import Login from '@components/ContentSideBar/Login/Login';
+import Compare from '@components/ContentSideBar/Compare/Compare';
+import WishList from '@components/ContentSideBar/WishList/WishList';
+import Cart from '@components/ContentSideBar/Cart/Cart';
 
 const Sidebar = () => {
     const { container, overlay, sidebar, sliceSideBar, boxIcon } = styles;
-    const { isOpen, setIsOpen } = useContext(SideBarContext);
+    const { isOpen, setIsOpen, type } = useContext(SideBarContext);
 
     const handleToggle = () => {
         setIsOpen(!isOpen);
+    };
+
+    const handleRenderContext = () => {
+        switch (type) {
+            case 'login':
+                return <Login />;
+            case 'compare':
+                return <Compare />;
+            case 'wishList':
+                return <WishList />;
+            case 'cart':
+                return <Cart />;
+            default:
+                return <Login />;
+        }
     };
 
     return (
@@ -32,7 +50,7 @@ const Sidebar = () => {
                     </div>
                 )}
 
-                <Login />
+                {handleRenderContext()}
             </div>
         </div>
     );

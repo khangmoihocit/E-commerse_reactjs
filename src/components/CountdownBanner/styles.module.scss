@@ -2,6 +2,8 @@
 @import '@styles/variables.module.scss';
 
 .container {
+    @include flex_box_custom(center, center, 20px);
+    flex-direction: column;
     background-image: url('../../../src/assets/images/photoofman.webp');
     height: 409px;
     width: calc(100%/2);
@@ -23,4 +25,5 @@
 .boxBtn{
     text-align: center;
     margin-top: 30px;
+    width: 176px;
 }

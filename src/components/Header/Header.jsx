@@ -4,9 +4,9 @@ import Menu from '@components/Header/Menu/Menu';
 import { dataBoxIcon, dataMenu } from '@components/Header/constants';
 import styles from './styles.module.scss';
 import Logo from '@icons/images/Logo-retina.webp';
-import heartIcon from '@icons/svgs/heartIcon.svg';
-import reloadIcon from '@icons/svgs/reloadIcon.svg';
-import cartIcon from '@icons/svgs/cartIcon.svg';
+import { CiHeart } from 'react-icons/ci';
+import { TfiReload } from 'react-icons/tfi';
+import { PiShoppingCart } from 'react-icons/pi';
 import useScrollHandling from '@/hooks/useScrollHandling';
 import classNames from 'classnames';
 import { SideBarContext } from '@/contexts/SidebarProvider';
@@ -24,7 +24,12 @@ const Header = () => {
 
     const { scrollPosition } = useScrollHandling();
     const [fixedPosition, setFixedPosition] = useState(false);
-    const {isOpen, setIsOpen} = useContext(SideBarContext);
+    const { isOpen, setIsOpen, setType } = useContext(SideBarContext);
+
+    const handleOpenSideBar = type => {
+        setIsOpen(true);
+        setType(type);
+    };
 
     useEffect(() => {
         setFixedPosition(scrollPosition > 80 ? true : false);
@@ -67,28 +72,25 @@ const Header = () => {
                     <div className={containerMenu}>
                         {dataMenu.slice(3, dataMenu.length).map(item => {
                             return (
-                                <Menu content={item.content} href={item.href} setIsOpen={setIsOpen}/>
+                                <Menu
+                                    content={item.content}
+                                    href={item.href}
+                                />
                             );
                         })}
                     </div>
                     <div className={containerBoxIcon}>
-                        <img
-                            width={23}
-                            height={23}
-                            src={reloadIcon}
-                            alt='reload icon'
+                        <TfiReload
+                            style={{ fontSize: '20px' }}
+                            onClick={() => handleOpenSideBar('compare')}
                         />
-                        <img
-                            width={23}
-                            height={23}
-                            src={heartIcon}
-                            alt='reload icon'
+                        <CiHeart
+                            style={{ fontSize: '27px' }}
+                            onClick={() => handleOpenSideBar('wishList')}
                         />
-                        <img
-                            width={23}
-                            height={23}
-                            src={cartIcon}
-                            alt='reload icon'
+                        <PiShoppingCart
+                            style={{ fontSize: '25px' }}
+                            onClick={() => handleOpenSideBar('cart')}
                         />
                     </div>
                 </div>
