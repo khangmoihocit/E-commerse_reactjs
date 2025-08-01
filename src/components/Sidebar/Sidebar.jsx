@@ -7,10 +7,25 @@ import Login from '@components/ContentSideBar/Login/Login';
 
 const Sidebar = () => {
     const { container, overlay, sidebar, sliceSideBar, boxIcon } = styles;
-    const { isOpen, setIsOpen } = useContext(SideBarContext);
+    const { isOpen, setIsOpen, type } = useContext(SideBarContext);
 
     const handleToggle = () => {
         setIsOpen(!isOpen);
+    };
+
+    const handleRenderContext = () => {
+        switch (type) {
+            case 'login':
+                return <Login />;
+            case 'compare':
+                return 'compare';
+            case 'wishList':
+                return 'wishList';
+            case 'cart':
+                return 'cart';
+            default:
+                return <Login />;
+        }
     };
 
     return (
@@ -32,7 +47,7 @@ const Sidebar = () => {
                     </div>
                 )}
 
-                <Login />
+                {handleRenderContext()}
             </div>
         </div>
     );
