@@ -20,7 +20,10 @@ const Login = () => {
             password: Yup.string()
                 .min(6, 'Password must be at least 6 characters')
                 .required('Password is required')
-        })
+        }),
+        onSubmit: (value)=>{
+            console.log(value);
+        }
     });
 
     return (
@@ -48,7 +51,7 @@ const Login = () => {
                 </div>
 
                 <div className={boxButton}>
-                    <Button content={'LOGIN'} />
+                    <Button content={'LOGIN'} type='submit'/>
                 </div>
             </form>
 
