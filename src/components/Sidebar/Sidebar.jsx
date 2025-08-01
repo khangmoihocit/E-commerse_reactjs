@@ -4,6 +4,7 @@ import { SideBarContext } from '@/contexts/SidebarProvider';
 import { AiOutlineClose } from 'react-icons/ai';
 import classNames from 'classnames';
 import Login from '@components/ContentSideBar/Login/Login';
+import Compare from '@components/ContentSideBar/Compare/Compare';
 
 const Sidebar = () => {
     const { container, overlay, sidebar, sliceSideBar, boxIcon } = styles;
@@ -18,7 +19,7 @@ const Sidebar = () => {
             case 'login':
                 return <Login />;
             case 'compare':
-                return 'compare';
+                return <Compare />;
             case 'wishList':
                 return 'wishList';
             case 'cart':
