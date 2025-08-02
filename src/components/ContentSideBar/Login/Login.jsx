@@ -9,7 +9,7 @@ import { ToastContext } from '@/contexts/ToastProvider';
 const Login = () => {
     const { container, title, boxRememberMe, lostPw, boxButton } = styles;
     const [isRegister, setIsRegister] = useState(false);
-    const {toast} = useContext(ToastContext);
+    const { toast } = useContext(ToastContext);
 
     const formik = useFormik({
         initialValues: {
@@ -24,7 +24,10 @@ const Login = () => {
             password: Yup.string()
                 .min(6, 'Password must be at least 6 characters')
                 .required('Password is required'),
-            cfmpassword: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match')
+            cfmpassword: Yup.string().oneOf(
+                [Yup.ref('password'), null],
+                'Passwords must match'
+            )
         }),
         onSubmit: value => {
             console.log(value);
@@ -74,7 +77,7 @@ const Login = () => {
                     <Button
                         content={isRegister ? 'REGISTER' : 'LOGIN'}
                         type='submit'
-                        onClick={()=> toast.success('a')}
+                        onClick={() => toast.success('a')}
                     />
                 </div>
             </form>
