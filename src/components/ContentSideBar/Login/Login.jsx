@@ -1,17 +1,21 @@
 import InputCommon from '@components/InputCommon/InputCommon';
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import styles from './styles.module.scss';
 import Button from '@components/Button/Button';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { ToastContext } from '@/contexts/ToastProvider';
 
 const Login = () => {
     const { container, title, boxRememberMe, lostPw, boxButton } = styles;
+    const [isRegister, setIsRegister] = useState(false);
+    const { toast } = useContext(ToastContext);
 
     const formik = useFormik({
         initialValues: {
             email: '',
-            password: ''
+            password: '',
+            cfmpassword: ''
         },
         validationSchema: Yup.object({
             email: Yup.string()
@@ -19,16 +23,24 @@ const Login = () => {
                 .required('Email is required'),
             password: Yup.string()
                 .min(6, 'Password must be at least 6 characters')
-                .required('Password is required')
+                .required('Password is required'),
+            cfmpassword: Yup.string().oneOf(
+                [Yup.ref('password'), null],
+                'Passwords must match'
+            )
         }),
-        onSubmit: (value)=>{
+        onSubmit: value => {
             console.log(value);
         }
     });
 
+    const handleToggle = () => {
+        setIsRegister(!isRegister);
+    };
+
     return (
         <div className={container}>
-            <div className={title}>SIGN IN</div>
+            <div className={title}>{isRegister ? 'SIGN UP' : 'SIGN IN'}</div>
 
             <form onSubmit={formik.handleSubmit}>
                 <InputCommon
@@ -45,17 +57,45 @@ const Login = () => {
                     isRequired={true}
                     formik={formik}
                 />
-                <div className={boxRememberMe}>
-                    <input type='checkbox' />
-                    <span>Remember me</span>
-                </div>
+                {isRegister && (
+                    <InputCommon
+                        id='cfmpassword'
+                        label='Confirm password'
+                        type='password'
+                        isRequired={true}
+                        formik={formik}
+                    />
+                )}
+                {!isRegister && (
+                    <div className={boxRememberMe}>
+                        <input type='checkbox' />
+                        <span>Remember me</span>
+                    </div>
+                )}
 
                 <div className={boxButton}>
-                    <Button content={'LOGIN'} type='submit'/>
+                    <Button
+                        content={isRegister ? 'REGISTER' : 'LOGIN'}
+                        type='submit'
+                        onClick={() => toast.success('a')}
+                    />
                 </div>
             </form>
+            <div className={boxButton}>
+                <Button
+                    content={
+                        isRegister
+                            ? 'Already have an accounr?'
+                            : "Don't have an acount"
+                    }
+                    type='submit'
+                    isPrimary={false}
+                    style={{ marginTop: '10px' }}
+                    onClick={handleToggle}
+                />
+            </div>
 
-            <div className={lostPw}>Lost your password?</div>
+            {!isRegister && <div className={lostPw}>Lost your password?</div>}
         </div>
     );
 };
