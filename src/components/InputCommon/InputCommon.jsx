@@ -37,7 +37,7 @@ const InputCommon = ({ label, type, isRequired = false, ...props }) => {
                         {showPassword ? <HiOutlineEyeOff /> : <HiOutlineEye />}
                     </div>
                 )}
-                {isError && <div className={errorMessage}>{messageError}</div>}
+                {isError ? (<div className={errorMessage}>{messageError}</div>) : (<div className={errorMessage}></div>)}
             </div>
         </div>
     );
