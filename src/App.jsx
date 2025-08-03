@@ -4,7 +4,7 @@ import routers from '@/routers/routers';
 import { SideBarProvider } from '@/contexts/SidebarProvider';
 import Sidebar from '@components/Sidebar/Sidebar';
 import { ToastProvider } from '@/contexts/ToastProvider';
-import { StoreProvider } from 'src/contexts/storeProvider';
+import { StoreProvider } from '@/contexts/storeProvider';
 
 function App() {
     return (
