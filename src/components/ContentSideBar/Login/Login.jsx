@@ -43,7 +43,6 @@ const Login = () => {
                         console.log(res);
                         toast.success(res.data.message);
                         setIsLoading(false);
-                        setIsRegister(false);
                     })
                     .catch(err => {
                         toast.error(err.response.data.message);
@@ -59,6 +58,8 @@ const Login = () => {
 
                         Cookies.set('token', token);
                         Cookies.set('refreshToken', refreshToken);
+                        Cookies.set('userId', id);
+                        toast.success('Sign in successfully!')
                     })
                     .catch(err => {
                         toast.error(err.response.data.message);
@@ -74,7 +75,7 @@ const Login = () => {
 
     useEffect(() => {
         getInfo().then(res => {
-            console.log(res.data);
+            // console.log(res.data);
         });
     }, []);
 
