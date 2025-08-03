@@ -1,11 +1,12 @@
 import InputCommon from '@components/InputCommon/InputCommon';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import Button from '@components/Button/Button';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { ToastContext } from '@/contexts/ToastProvider';
-import { register } from '@/apis/authService';
+import { register, signIn, getInfo } from '@/apis/authService';
+import Cookies from 'js-cookie';
 
 const Login = () => {
     const { container, title, boxRememberMe, lostPw, boxButton } = styles;
@@ -33,18 +34,34 @@ const Login = () => {
         }),
         onSubmit: async values => {
             if (isLoading) return;
+            const { email: username, password } = values;
+            setIsLoading(true);
 
             if (isRegister) {
-                const { email: username, password } = values;
-
-                setIsLoading(true);
                 await register({ username, password })
-                    .then(result => {
-                        toast.success(result.data.message);
+                    .then(res => {
+                        console.log(res);
+                        toast.success(res.data.message);
                         setIsLoading(false);
+                        setIsRegister(false);
                     })
-                    .catch(error => {
-                        toast.error(error.response.data.message);
+                    .catch(err => {
+                        toast.error(err.response.data.message);
+                        setIsLoading(false);
+                    });
+            }
+
+            if (!isRegister) {
+                await signIn({ username, password })
+                    .then(res => {
+                        setIsLoading(false);
+                        const { id, token, refreshToken } = res.data;
+
+                        Cookies.set('token', token);
+                        Cookies.set('refreshToken', refreshToken);
+                    })
+                    .catch(err => {
+                        toast.error(err.response.data.message);
                         setIsLoading(false);
                     });
             }
@@ -54,6 +71,12 @@ const Login = () => {
     const handleToggle = () => {
         setIsRegister(!isRegister);
     };
+
+    useEffect(() => {
+        getInfo().then(res => {
+            console.log(res.data);
+        });
+    }, []);
 
     return (
         <div className={container}>
@@ -92,7 +115,13 @@ const Login = () => {
 
                 <div className={boxButton}>
                     <Button
-                        content={isRegister ? 'REGISTER' : 'LOGIN'}
+                        content={
+                            isLoading
+                                ? 'LOADING...'
+                                : isRegister
+                                ? 'REGISTER'
+                                : 'LOGIN'
+                        }
                         type='submit'
                     />
                 </div>
