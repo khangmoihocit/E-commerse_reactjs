@@ -47,6 +47,7 @@ const Login = () => {
                         console.log(res);
                         toast.success(res.data.message);
                         setIsLoading(false);
+                        setIsRegister(false);
                     })
                     .catch(err => {
                         toast.error(err.response.data.message);
@@ -68,8 +69,17 @@ const Login = () => {
                         setIsOpen(false);
                     })
                     .catch(err => {
-                        toast.error(err.response.data.message);
                         setIsLoading(false);
+                        if (err.message) {
+                            toast.error(
+                                err?.message ||
+                                    'Thông tin đăng nhập không chính xác.'
+                            );
+                        } else {
+                            toast.error(
+                                'Lỗi mạng hoặc server không phản hồi. Vui lòng thử lại!'
+                            );
+                        }
                     });
             }
         }
