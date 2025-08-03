@@ -5,10 +5,12 @@ import Button from '@components/Button/Button';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { ToastContext } from '@/contexts/ToastProvider';
+import { register } from '@/apis/authService';
 
 const Login = () => {
     const { container, title, boxRememberMe, lostPw, boxButton } = styles;
     const [isRegister, setIsRegister] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const { toast } = useContext(ToastContext);
 
     const formik = useFormik({
@@ -29,8 +31,23 @@ const Login = () => {
                 'Passwords must match'
             )
         }),
-        onSubmit: value => {
-            console.log(value);
+        onSubmit: async values => {
+            if (isLoading) return;
+
+            if (isRegister) {
+                const { email: username, password } = values;
+
+                setIsLoading(true);
+                await register({ username, password })
+                    .then(result => {
+                        toast.success(result.data.message);
+                        setIsLoading(false);
+                    })
+                    .catch(error => {
+                        toast.error(error.response.data.message);
+                        setIsLoading(false);
+                    });
+            }
         }
     });
 
@@ -77,7 +94,6 @@ const Login = () => {
                     <Button
                         content={isRegister ? 'REGISTER' : 'LOGIN'}
                         type='submit'
-                        onClick={() => toast.success('a')}
                     />
                 </div>
             </form>
