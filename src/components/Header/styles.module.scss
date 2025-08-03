@@ -18,8 +18,8 @@
     top: -83px;
     z-index: 99;
 
-    background-color: #FFFFFFE6;
-    box-shadow: 2px 0 12px 0 rgba(0, 0, 0, .15);
+    background-color: #ffffffe6;
+    box-shadow: 2px 0 12px 0 rgba(0, 0, 0, 0.15);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
 
@@ -38,7 +38,7 @@
 .containerBoxIcon {
     @include flex_box_custom(center, center, 20px);
 
-    &:hover{
+    &:hover {
         cursor: pointer;
     }
 }
@@ -64,6 +64,15 @@
     padding-top: 9px;
     font-size: 15px;
     color: $primary_color;
+    position: relative;
+
+    .subMenu {
+        position: absolute;
+        background-color: #fff;
+        width: 100%;
+        padding: 10px;
+        top: 40px;
+    }
 }
 
 .menu::after {

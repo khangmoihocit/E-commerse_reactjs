@@ -24,6 +24,7 @@ const Header = () => {
 
     const { scrollPosition } = useScrollHandling();
     const [fixedPosition, setFixedPosition] = useState(false);
+
     const { isOpen, setIsOpen, setType } = useContext(SideBarContext);
 
     const handleOpenSideBar = type => {
