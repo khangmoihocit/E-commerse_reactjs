@@ -10,6 +10,7 @@ import { PiShoppingCart } from 'react-icons/pi';
 import useScrollHandling from '@/hooks/useScrollHandling';
 import classNames from 'classnames';
 import { SideBarContext } from '@/contexts/SidebarProvider';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
     const {
@@ -26,6 +27,8 @@ const Header = () => {
     const [fixedPosition, setFixedPosition] = useState(false);
 
     const { isOpen, setIsOpen, setType } = useContext(SideBarContext);
+
+    const navigate = useNavigate();
 
     const handleOpenSideBar = type => {
         setIsOpen(true);
@@ -59,7 +62,11 @@ const Header = () => {
                         })}
                     </div>
                 </div>
-                <div>
+                <div
+                    onClick={() => {
+                        navigate('/');
+                    }}
+                >
                     <img
                         src={Logo}
                         alt='Logo'
@@ -73,10 +80,7 @@ const Header = () => {
                     <div className={containerMenu}>
                         {dataMenu.slice(3, dataMenu.length).map(item => {
                             return (
-                                <Menu
-                                    content={item.content}
-                                    href={item.href}
-                                />
+                                <Menu content={item.content} href={item.href} />
                             );
                         })}
                     </div>
