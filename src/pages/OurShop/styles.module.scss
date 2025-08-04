@@ -56,6 +56,7 @@
 
 .containerFilter {
     @include flex_box_custom(space-between, center, 0px);
+    margin-top: 20px;
 
     .boxLeft {
         @include flex_box_custom(center, center, 10px);
@@ -77,4 +78,11 @@
     .show {
         width: 83px;
     }
+}
+
+.containerProduct{
+    @include flex_box_custom(flex-start, center, 16px);
+
+    margin-top: 10px;
+    flex-wrap: wrap;
 }
