@@ -38,7 +38,7 @@
         .countdownBox {
             @include flex_box_custom(center, center, 10px);
 
-            >span{
+            > span {
                 border: 1px solid #e1e1e1;
             }
         }
@@ -51,5 +51,30 @@
         .boxBtn {
             width: 160px;
         }
+    }
+}
+
+.containerFilter {
+    @include flex_box_custom(space-between, center, 0px);
+
+    .boxLeft {
+        @include flex_box_custom(center, center, 10px);
+    }
+
+    .boxIcon {
+        @include flex_box_custom(center, center, 10px);
+    }
+
+    .selectBox {
+        border: 1px solid #e1e1e1;
+        padding: 5px;
+        color: $seconddary_color;
+    }
+    .sort {
+        width: 275px;
+    }
+
+    .show {
+        width: 83px;
     }
 }
