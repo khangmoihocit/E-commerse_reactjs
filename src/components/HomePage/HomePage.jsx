@@ -13,13 +13,13 @@ import Footer from '@components/Footer/Footer';
 const HomePage = () => {
     const { container } = styles;
     const [listProducts, setListProducts] = useState([]);
+    const query = {sortType: 0, page: 1, limit: 'all'};
 
     useEffect(() => {
-        getProducts().then(data => {
+        getProducts(query).then(data => {
             setListProducts(data.contents);
         });
     }, []);
-
 
     return (
         <div>
@@ -28,8 +28,10 @@ const HomePage = () => {
                 <Banner />
                 <Info />
                 <AdvanceHeadling />
-                <HeadlingListProduct data={listProducts.slice(0, 2)}/>
-                <PopularProduct data={listProducts.slice(2, listProducts.length)} />
+                <HeadlingListProduct data={listProducts.slice(0, 2)} />
+                <PopularProduct
+                    data={listProducts.slice(2, listProducts.length)}
+                />
                 <SaleHomePage />
                 <Footer />
             </div>

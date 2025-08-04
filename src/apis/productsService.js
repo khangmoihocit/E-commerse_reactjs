@@ -6,7 +6,7 @@ const getProducts = async query => {
     const queryLimit = limit === 'all' ? '' : `limit=${limit}`;
 
     const result = await axiosClient.get(
-        `/product?sortType=${sortType}&page=${page}&limit=${queryLimit}`
+        `/product?sortType=${sortType}&page=${page}&${queryLimit}`
     );
     return result.data;
 };
