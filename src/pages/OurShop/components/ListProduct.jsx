@@ -6,12 +6,14 @@ import ProductItem from '@components/ProductItem/ProductItem';
 
 const ListProduct = () => {
     const { containerProduct } = styles;
-    const { products } = useContext(OurShopConText);
+    const { products, isShowGrid } = useContext(OurShopConText);
+
+    console.log(isShowGrid)
 
     return (
         <>
             <MainLayout>
-                <div className={containerProduct}>
+                <div className={isShowGrid ? containerProduct : ''}>
                     {products.map(item => {
                         return (
                             <ProductItem
@@ -20,6 +22,8 @@ const ListProduct = () => {
                                 preSrc={item.images[1]}
                                 name={item.name}
                                 price={item.price}
+                                details={item}
+                                isHomePage={false}
                             />
                         );
                     })}
