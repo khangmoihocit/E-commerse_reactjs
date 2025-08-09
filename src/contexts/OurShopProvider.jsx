@@ -30,7 +30,8 @@ export const OurShopProvider = ({ children }) => {
         setSortId,
         setShowId,
         setIsShowGrid,
-        products
+        products,
+        isShowGrid
     };
 
     useEffect(() => {
