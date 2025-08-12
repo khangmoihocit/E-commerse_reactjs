@@ -1,5 +1,6 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import getProducts from '@/apis/productsService';
+import { ToastContext } from '@/contexts/ToastProvider';
 
 export const OurShopConText = createContext();
 
@@ -19,10 +20,12 @@ export const OurShopProvider = ({ children }) => {
         { label: 'All', value: 'all' }
     ];
 
+    const { toast } = useContext(ToastContext);
     const [sortId, setSortId] = useState('0');
     const [showId, setShowId] = useState('8');
     const [isShowGrid, setIsShowGrid] = useState(true);
     const [products, setProducts] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const values = {
         sortOptions,
@@ -31,7 +34,8 @@ export const OurShopProvider = ({ children }) => {
         setShowId,
         setIsShowGrid,
         products,
-        isShowGrid
+        isShowGrid,
+        isLoading
     };
 
     useEffect(() => {
@@ -40,12 +44,15 @@ export const OurShopProvider = ({ children }) => {
             page: 1,
             limit: showId
         };
+        setIsLoading(true);
         getProducts(query)
             .then(response => {
                 setProducts(response.contents);
+                setIsLoading(false);
             })
             .catch(error => {
-                console.log(error);
+                toast.error(error);
+                setIsLoading(false);
             });
     }, [sortId, showId]);
 
