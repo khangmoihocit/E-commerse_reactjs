@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import { getCart } from '@/apis/cartService';
 
@@ -29,6 +29,10 @@ export const SideBarProvider = ({ children }) => {
         handleGetListProducCart,
         listProductCart
     };
+
+    useEffect(() => {
+        handleGetListProducCart(Cookies.get('userId'), 'cart');
+    }, []);
 
     return (
         <SideBarContext.Provider value={values}>

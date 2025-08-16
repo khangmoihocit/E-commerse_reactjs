@@ -1,6 +1,6 @@
 import HeaderSideBar from '@components/ContentSideBar/components/HeaderSideBar/HeaderSideBar';
 import ItemProduct from '@components/ContentSideBar/components/ItemProduct/ItemProduct';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { PiShoppingCart } from 'react-icons/pi';
 import styles from './styles.module.scss';
 import Button from '@components/Button/Button';
@@ -10,7 +10,7 @@ const Cart = () => {
     const { container, boxButton, boxTotal, productList  } = styles;
 
     const { listProductCart } = useContext(SideBarContext);
-    
+
     return (
         <div className={container}>
             <div className={productList }>

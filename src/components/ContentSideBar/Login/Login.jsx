@@ -15,7 +15,7 @@ const Login = () => {
     const [isRegister, setIsRegister] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const { toast } = useContext(ToastContext);
-    const { setIsOpen } = useContext(SideBarContext);
+    const { setIsOpen, handleGetListProducCart } = useContext(SideBarContext);
     const { setUserId } = useContext(StoreContext);
 
     const formik = useFormik({
@@ -66,6 +66,7 @@ const Login = () => {
                         Cookies.set('refreshToken', refreshToken);
                         Cookies.set('userId', id);
                         toast.success('Sign in successfully!');
+                        handleGetListProducCart(id, 'cart');
                         setIsOpen(false);
                     })
                     .catch(err => {
