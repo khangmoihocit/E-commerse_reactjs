@@ -26,6 +26,30 @@ export const OurShopProvider = ({ children }) => {
     const [isShowGrid, setIsShowGrid] = useState(true);
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [isLoadMore, setIsLoadMore] = useState(false);
+    const [page, setPage] = useState(1);
+    const [total, setTotal] = useState(0);
+
+    //set products thêm các sản phẩm theo số trang
+    const handleLoadMore = () => {
+        const query = { sortType: sortId, page: +page + 1, limit: showId };
+
+        setIsLoadMore(true);
+        getProducts(query)
+            .then(response => {
+                //set lại list lấy cả giá trị trước đó
+                setProducts(prev => {
+                    return [...prev, ...response.contents];
+                });
+                setPage(+response.page);
+                setTotal(response.total);
+                setIsLoadMore(false);
+            })
+            .catch(error => {
+                toast.error(error);
+                setIsLoadMore(false);
+            });
+    };
 
     const values = {
         sortOptions,
@@ -35,10 +59,14 @@ export const OurShopProvider = ({ children }) => {
         setIsShowGrid,
         products,
         isShowGrid,
-        isLoading
+        isLoading,
+        handleLoadMore,
+        total,
+        isLoadMore
     };
 
     useEffect(() => {
+        setPage(1);
         const query = {
             sortType: sortId,
             page: 1,
@@ -49,6 +77,7 @@ export const OurShopProvider = ({ children }) => {
             .then(response => {
                 setProducts(response.contents);
                 setIsLoading(false);
+                setTotal(response.total);
             })
             .catch(error => {
                 toast.error(error);

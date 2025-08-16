@@ -86,3 +86,20 @@
     margin-top: 10px;
     flex-wrap: wrap;
 }
+
+.sectionListProduct{
+    min-height: 800px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading {
+  animation: spin 1s linear infinite;
+}
