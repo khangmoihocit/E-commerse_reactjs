@@ -5,6 +5,11 @@ import reloadIcon from '@icons/svgs/reloadIcon.svg';
 import cartIcon from '@icons/svgs/cartIcon.svg';
 import classNames from 'classnames';
 import Button from '@components/Button/Button';
+import Cookies from 'js-cookie';
+import { SideBarContext } from '@/contexts/SidebarProvider';
+import { ToastContext } from '@/contexts/ToastProvider';
+import LoadingTextCommon from '@components/LoadingTextCommon/LoadingTextCommon';
+import { addProductToCart } from '@/apis/cartService';
 
 const ProductItem = ({
     src,
@@ -35,14 +40,53 @@ const ProductItem = ({
     } = styles;
 
     const [sizeChoose, setSizeChoose] = useState('');
+    const userId = Cookies.get('userId');
+    const [isLoading, setIsLoading] = useState(false);
+    const { setIsOpen, setType, handleGetListProducCart } = useContext(SideBarContext);
+    const { toast } = useContext(ToastContext);
 
     const handleChooseSize = size => {
         setSizeChoose(size);
     };
 
-    const handleClearSize = ()=>{
+    const handleClearSize = () => {
         setSizeChoose('');
-    }
+    };
+
+    const handleAddToCart = () => {
+        if (!userId) {
+            setIsOpen(true);
+            setType('login');
+            toast.warning('Please login to add product to cart');
+            return;
+        }
+
+        if (!sizeChoose) {
+            toast.warning('Please choose size!');
+            return;
+        }
+
+        const data = {
+            userId,
+            productId: details._id,
+            quantity: 1,
+            size: sizeChoose
+        };
+
+        setIsLoading(true);
+        addProductToCart(data)
+            .then(response => {
+                toast.success(response.data.msg);
+                setIsOpen(true);
+                setType('cart');
+                handleGetListProducCart(userId, 'cart');
+                setIsLoading(false);
+            })
+            .catch(error => {
+                toast.error('Add product to cart fail');
+                setIsLoading(false);
+            });
+    };
 
     return (
         <div
@@ -86,7 +130,11 @@ const ProductItem = ({
                     </div>
                 )}
 
-                {sizeChoose && <div className={btnClear} onClick={handleClearSize}>Clear</div>}
+                {sizeChoose && (
+                    <div className={btnClear} onClick={handleClearSize}>
+                        Clear
+                    </div>
+                )}
 
                 <div
                     className={classNames(innerTitle, {
@@ -119,7 +167,16 @@ const ProductItem = ({
                             [leftBtn]: !isShowGrid
                         })}
                     >
-                        <Button content={'ADD TO CART'} />
+                        <Button
+                            content={
+                                isLoading ? (
+                                    <LoadingTextCommon />
+                                ) : (
+                                    'ADD TO CART'
+                                )
+                            }
+                            onClick={handleAddToCart}
+                        />
                     </div>
                 )}
             </div>

@@ -7,6 +7,12 @@
     padding: 30px 20px 0 20px;
     height: 90%;
 
+    .productList {
+        flex-grow: 1;
+        overflow-y: auto; /* Tự động hiển thị thanh cuộn khi nội dung quá dài */
+        overflow-x: hidden;
+    }
+
     .boxButton {
         @include flex_box_custom(center, unset, 10px);
         flex-direction: column;
@@ -14,7 +20,7 @@
         width: 100%;
     }
 
-    .boxTotal{
+    .boxTotal {
         @include flex_box_custom(space-between, center, 0);
     }
 }

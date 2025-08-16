@@ -3,7 +3,7 @@ import styles from './styles.module.scss';
 import { IoMdClose } from 'react-icons/io';
 import { SideBarContext } from '@/contexts/SidebarProvider';
 
-const ItemProduct = () => {
+const ItemProduct = ({src, nameProduct, priceProduct, skuProduct, sizeProduct, quantity}) => {
     const { container, boxContent, price, title, boxClose, size } = styles;
     const { type } = useContext(SideBarContext);
     const isShowSize = type === 'cart' ? true : false;
@@ -11,7 +11,7 @@ const ItemProduct = () => {
     return (
         <div className={container}>
             <img
-                src='https://xstore.8theme.com/elementor2/marseille04/wp-content/uploads/sites/2/2022/12/Image-1.1-min.jpg'
+                src={src}
                 alt=''
             />
             <div className={boxClose}>
@@ -19,11 +19,11 @@ const ItemProduct = () => {
             </div>
             <div className={boxContent}>
                 <div className={title}>
-                    title of productcccccccccccccccccccccccc
+                    {nameProduct}
                 </div>
-                {isShowSize && <div className={size}>Size: M</div>}
-                <div className={price}>$222</div>
-                {isShowSize && <div className={price}>SKU: 12345</div>}
+                {isShowSize && <div className={size}>Size: {sizeProduct}</div>}
+                <div className={price}>{quantity} x ${priceProduct}</div>
+                {isShowSize && <div className={price}>SKU: {skuProduct}</div>}
             </div>
         </div>
     );

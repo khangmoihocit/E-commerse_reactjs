@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styles from './styles.module.scss';
 import { SideBarContext } from '@/contexts/SidebarProvider';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -30,6 +30,7 @@ const Sidebar = () => {
                 return <Login />;
         }
     };
+
 
     return (
         <div className={container}>
