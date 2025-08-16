@@ -8,15 +8,19 @@ export const SideBarProvider = ({ children }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [type, setType] = useState('');
     const [listProductCart, setListProductCart] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleGetListProducCart = (userId, type) => {
         if (userId && type === 'cart') {
+            setIsLoading(true);
             getCart(userId)
                 .then(res => {
                     setListProductCart(res.data.data);
+                    setIsLoading(false);
                 })
                 .catch(error => {
                     setListProductCart([]);
+                    setIsLoading(false);
                 });
         }
     };
@@ -27,7 +31,8 @@ export const SideBarProvider = ({ children }) => {
         type,
         setType,
         handleGetListProducCart,
-        listProductCart
+        listProductCart,
+        isLoading
     };
 
     useEffect(() => {
