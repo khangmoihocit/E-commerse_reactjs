@@ -1,5 +1,6 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import getProducts from '@/apis/productsService';
+import { ToastContext } from '@/contexts/ToastProvider';
 
 export const OurShopConText = createContext();
 
@@ -19,10 +20,36 @@ export const OurShopProvider = ({ children }) => {
         { label: 'All', value: 'all' }
     ];
 
+    const { toast } = useContext(ToastContext);
     const [sortId, setSortId] = useState('0');
     const [showId, setShowId] = useState('8');
     const [isShowGrid, setIsShowGrid] = useState(true);
     const [products, setProducts] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isLoadMore, setIsLoadMore] = useState(false);
+    const [page, setPage] = useState(1);
+    const [total, setTotal] = useState(0);
+
+    //set products thêm các sản phẩm theo số trang
+    const handleLoadMore = () => {
+        const query = { sortType: sortId, page: +page + 1, limit: showId };
+
+        setIsLoadMore(true);
+        getProducts(query)
+            .then(response => {
+                //set lại list lấy cả giá trị trước đó
+                setProducts(prev => {
+                    return [...prev, ...response.contents];
+                });
+                setPage(+response.page);
+                setTotal(response.total);
+                setIsLoadMore(false);
+            })
+            .catch(error => {
+                toast.error(error);
+                setIsLoadMore(false);
+            });
+    };
 
     const values = {
         sortOptions,
@@ -31,21 +58,30 @@ export const OurShopProvider = ({ children }) => {
         setShowId,
         setIsShowGrid,
         products,
-        isShowGrid
+        isShowGrid,
+        isLoading,
+        handleLoadMore,
+        total,
+        isLoadMore
     };
 
     useEffect(() => {
+        setPage(1);
         const query = {
             sortType: sortId,
             page: 1,
             limit: showId
         };
+        setIsLoading(true);
         getProducts(query)
             .then(response => {
                 setProducts(response.contents);
+                setIsLoading(false);
+                setTotal(response.total);
             })
             .catch(error => {
-                console.log(error);
+                toast.error(error);
+                setIsLoading(false);
             });
     }, [sortId, showId]);
 

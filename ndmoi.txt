@@ -1,3 +1,7 @@
 - Tùy chọn css class => component Button, Header
 - Hover ra menu => component Menu
 - 
+OurShop/ListProduct: tránh bị nhảy lên khi load lại sản phẩm (gọi api)
+.sectionListProduct{
+    min-height: 800px;
+}

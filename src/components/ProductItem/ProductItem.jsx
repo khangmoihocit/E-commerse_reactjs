@@ -1,11 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from './styles.module.scss';
 import heartIcon from '@icons/svgs/heartIcon.svg';
 import reloadIcon from '@icons/svgs/reloadIcon.svg';
 import cartIcon from '@icons/svgs/cartIcon.svg';
 import classNames from 'classnames';
 import Button from '@components/Button/Button';
-import { OurShopConText } from '@/contexts/OurShopProvider';
 
 const ProductItem = ({
     src,
@@ -13,7 +12,8 @@ const ProductItem = ({
     name,
     price,
     details,
-    isHomePage = true
+    isHomePage = true,
+    isShowGrid = true
 }) => {
     const {
         container,
@@ -29,17 +29,27 @@ const ProductItem = ({
         boxBtn,
         boxContent,
         leftBtn,
-        largImg
+        largImg,
+        isActiveSize,
+        btnClear
     } = styles;
 
-    const { isShowGrid } = useContext(OurShopConText);
+    const [sizeChoose, setSizeChoose] = useState('');
+
+    const handleChooseSize = size => {
+        setSizeChoose(size);
+    };
+
+    const handleClearSize = ()=>{
+        setSizeChoose('');
+    }
 
     return (
         <div
             className={isShowGrid ? '' : container}
             style={{ marginTop: '20px' }}
         >
-            <div className={classNames(boxImg, {[largImg] : !isShowGrid})}>
+            <div className={classNames(boxImg, { [largImg]: !isShowGrid })}>
                 <img src={src} alt='' />
                 <img src={preSrc} alt='' className={showImgWhenHover} />
                 <div className={showFuncWhenHover}>
@@ -62,13 +72,22 @@ const ProductItem = ({
                     <div className={boxSize}>
                         {details.size.map((item, index) => {
                             return (
-                                <div className={size} key={index}>
+                                <div
+                                    className={classNames(size, {
+                                        [isActiveSize]: item.name === sizeChoose
+                                    })}
+                                    key={index}
+                                    onClick={() => handleChooseSize(item.name)}
+                                >
                                     {item.name}
                                 </div>
                             );
                         })}
                     </div>
                 )}
+
+                {sizeChoose && <div className={btnClear} onClick={handleClearSize}>Clear</div>}
+
                 <div
                     className={classNames(innerTitle, {
                         [textCenter]: !isHomePage
