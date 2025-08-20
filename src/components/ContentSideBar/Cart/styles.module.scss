@@ -6,6 +6,13 @@
     flex-direction: column;
     padding: 30px 20px 0 20px;
     height: 90%;
+    
+
+    .productList {
+        flex-grow: 1;
+        overflow-y: auto; /* Tự động hiển thị thanh cuộn khi nội dung quá dài */
+        overflow-x: hidden;
+    }
 
     .boxButton {
         @include flex_box_custom(center, unset, 10px);
@@ -14,7 +21,21 @@
         width: 100%;
     }
 
-    .boxTotal{
+    .boxTotal {
         @include flex_box_custom(space-between, center, 0);
+    }
+
+    .containerListProductCart {
+        position: relative;
+
+        .overLoading {
+            @include flex_box_custom(center, center, 0px);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
     }
 }

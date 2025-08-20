@@ -5,6 +5,7 @@ import styles from '../styles.module.scss';
 import ProductItem from '@components/ProductItem/ProductItem';
 import Button from '@components/Button/Button';
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import LoadingTextCommon from '@components/LoadingTextCommon/LoadingTextCommon';
 
 const ListProduct = () => {
     const { containerProduct, sectionListProduct, loading } = styles;
@@ -40,7 +41,7 @@ const ListProduct = () => {
                             >
                                 <Button
                                     onClick={handleLoadMore}
-                                    content={isLoadMore ? <AiOutlineLoading3Quarters className={loading}/> : 'LOAD MORE PRODUCT'}
+                                    content={isLoadMore ? <LoadingTextCommon /> : 'LOAD MORE PRODUCT'}
                                 />
                             </div>
                         )}
