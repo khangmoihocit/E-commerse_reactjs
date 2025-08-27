@@ -23,7 +23,7 @@ axiosClient.interceptors.request.use(
     }
 );
 
-//config lỗi khi token hết hạn hoặc sai
+//config lỗi khi token hết hạn refresh token
 axiosClient.interceptors.response.use(
     res => {
         return res;
