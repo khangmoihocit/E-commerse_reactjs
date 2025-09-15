@@ -1,0 +1,66 @@
+@import '@styles/variables.module.scss';
+@import '@styles/mixins.module.scss';
+
+.container {
+    padding-top: 83px;
+}
+
+.containerSteps {
+    @include flex_box_custom(center, center, 0px);
+    flex-direction: column;
+
+    background-color: #fafafa;
+    margin-top: 30px;
+
+    .steps {
+        @include flex_box_custom(center, center, 10px);
+
+        .line {
+            min-width: 120px;
+            height: 1px;
+            background-color: #e1e1e1;
+        }
+    }
+
+    .textNotice {
+        font-size: 16px;
+        color: #333;
+        font-weight: 400;
+        padding-top: 35px;
+    }
+
+    .stepper {
+        @include flex_box_custom(center, center, 10px);
+
+        .numberStep {
+            @include flex_box_custom(center, center, 0px);
+            background-color: #333;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            color: $white_color;
+        }
+
+        .isDisableNumber {
+            background-color: transparent;
+            border: 1px solid #e1e1e1;
+            color: #888;
+        }
+
+        .textStep {
+            color: $four_color;
+            font-size: 16px;
+        }
+
+        .isDisableText {
+            color: #9a9a9a;
+        }
+    }
+}
+
+.containerContents {
+    @include flex_box_custom(flex-start, flex-start, 40px);
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}

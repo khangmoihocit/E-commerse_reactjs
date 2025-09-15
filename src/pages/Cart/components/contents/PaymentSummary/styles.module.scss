@@ -1,0 +1,142 @@
+@import '@styles/variables.module.scss';
+@import '@styles/mixins.module.scss';
+
+.summaryContainer {
+    min-width: 350px;
+    border: 1px solid #e1e1e1;
+    padding: 30px;
+    border-radius: 0;
+    height: fit-content;
+}
+
+.summaryTitle {
+    font-size: 16px;
+    font-weight: 400;
+    color: #333;
+    margin: 0;
+    border-bottom: 1px solid #e1e1e1;
+    text-align: left;
+    padding-bottom: 10px;
+}
+
+.summaryRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.summaryLabel {
+    font-size: 14px;
+    color: #666;
+    font-weight: 400;
+    padding-top: 10px;
+}
+
+.summaryValue {
+    font-size: 14px;
+    font-weight: 400;
+    padding-top: 10px;
+    color: #333;
+}
+
+.totalRow {
+    .summaryLabel,
+    .summaryValue {
+        font-size: 18px;
+        font-weight: 450;
+        color: #333;
+    }
+}
+
+.checkoutBtn {
+    width: 429px;
+    margin: 20px 0;
+}
+
+.continueShoppingBtn {
+    width: 429px;
+}
+
+.paymentSecurity {
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid #e1e1e1;
+}
+
+.paymentIcons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+
+    :global(.payment-icon) {
+        padding: 5px 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 600;
+        background-color: white;
+        color: #333;
+        min-width: 40px;
+        text-align: center;
+
+        &.visa {
+            color: #1a1f71;
+            border-color: #1a1f71;
+        }
+
+        &.mastercard {
+            color: #eb001b;
+            border-color: #eb001b;
+        }
+
+        &.paypal {
+            color: #003087;
+            border-color: #003087;
+        }
+
+        &.amex {
+            color: #006fcf;
+            border-color: #006fcf;
+        }
+
+        &.maestro {
+            color: #6c5ce7;
+            border-color: #6c5ce7;
+        }
+
+        &.bitcoin {
+            color: #f7931a;
+            border-color: #f7931a;
+            font-size: 16px;
+        }
+    }
+}
+
+.securityText {
+    font-size: 14px;
+    color: #333;
+    margin: 10px 0;
+    font-weight: 400;
+
+    &:first-child {
+        font-size: 16px;
+    }
+
+    &:last-child {
+        font-size: 12px;
+        color: #888;
+        margin-bottom: 0;
+    }
+}
+
+.innerImage {
+    border: 1px solid #3333332a;
+    img {
+        width: 50px;
+        height: 34px;
+    }
+}
