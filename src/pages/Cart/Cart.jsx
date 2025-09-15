@@ -4,6 +4,7 @@ import React from 'react';
 import Contents from '@/pages/Cart/components/contents/Contents';
 import Steps from '@/pages/Cart/components/steps/Steps';
 import styles from './styles.module.scss';
+import MainLayout from '@/components/Layout/Layout';
 
 const Cart = () => {
     const {container} = styles;
@@ -12,7 +13,9 @@ const Cart = () => {
             <Header />
             <div className={container}>
                 <Steps />
-                <Contents />
+                <MainLayout>
+                    <Contents />
+                </MainLayout>
             </div>
             <Footer />
         </>

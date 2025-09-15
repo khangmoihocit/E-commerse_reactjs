@@ -29,7 +29,7 @@ const Steps = () => {
                 ))}
             </div>
 
-            <div className={textNotice}></div>
+            <div className={textNotice}>You are out of time! Checkout now to avoid losing your order!</div>
         </div>
     );
 };
