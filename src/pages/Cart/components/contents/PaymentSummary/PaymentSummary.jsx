@@ -18,6 +18,15 @@ const PaymentSummary = ({ cartItems = [] }) => {
         innerImage
     } = styles;
 
+    const imgPaySafe = [
+        'https://xstore.8theme.com/elementor2/marseille04/wp-content/themes/xstore/images/woocommerce/payment-icons/visa.jpeg',
+        'https://xstore.8theme.com/elementor2/marseille04/wp-content/themes/xstore/images/woocommerce/payment-icons/master-card.jpeg',
+        'https://xstore.8theme.com/elementor2/marseille04/wp-content/themes/xstore/images/woocommerce/payment-icons/paypal.jpeg',
+        'https://xstore.8theme.com/elementor2/marseille04/wp-content/themes/xstore/images/woocommerce/payment-icons/american-express.jpeg',
+        'https://xstore.8theme.com/elementor2/marseille04/wp-content/themes/xstore/images/woocommerce/payment-icons/maestro.jpeg',
+        'https://xstore.8theme.com/elementor2/marseille04/wp-content/themes/xstore/images/woocommerce/payment-icons/bitcoin.jpeg'
+    ];
+
     const subtotal = cartItems.reduce(
         (total, item) => total + item.price * item.quantity,
         0
@@ -56,42 +65,11 @@ const PaymentSummary = ({ cartItems = [] }) => {
                 </div>
 
                 <div className={paymentIcons}>
-                    <span className={innerImage}>
-                        <img
-                            src='https://xstore.8theme.com/elementor2/marseille04/wp-content/themes/xstore/images/woocommerce/payment-icons/visa.jpeg'
-                            alt=''
-                        />
-                    </span>
-                    <span className={innerImage}>
-                        <img
-                            src='https://xstore.8theme.com/elementor2/marseille04/wp-content/themes/xstore/images/woocommerce/payment-icons/master-card.jpeg'
-                            alt=''
-                        />
-                    </span>
-                    <span className={innerImage}>
-                        <img
-                            src='https://xstore.8theme.com/elementor2/marseille04/wp-content/themes/xstore/images/woocommerce/payment-icons/paypal.jpeg'
-                            alt=''
-                        />
-                    </span>
-                    <span className={innerImage}>
-                        <img
-                            src='https://xstore.8theme.com/elementor2/marseille04/wp-content/themes/xstore/images/woocommerce/payment-icons/american-express.jpeg'
-                            alt=''
-                        />
-                    </span>
-                    <span className={innerImage}>
-                        <img
-                            src='https://xstore.8theme.com/elementor2/marseille04/wp-content/themes/xstore/images/woocommerce/payment-icons/maestro.jpeg'
-                            alt=''
-                        />
-                    </span>
-                    <span className={innerImage}>
-                        <img
-                            src='https://xstore.8theme.com/elementor2/marseille04/wp-content/themes/xstore/images/woocommerce/payment-icons/bitcoin.jpeg'
-                            alt=''
-                        />
-                    </span>
+                    {imgPaySafe.map((item, index) => (
+                        <span className={innerImage} key={index}>
+                            <img src={item} alt='' />
+                        </span>
+                    ))}
                 </div>
 
                 <p className={securityText}>Your Payment is 100% Secure</p>
