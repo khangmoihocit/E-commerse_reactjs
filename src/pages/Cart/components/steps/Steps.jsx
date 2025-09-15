@@ -3,7 +3,7 @@ import styles from '../../styles.module.scss';
 import Steper from '@/pages/Cart/components/steps/Steper';
 
 const Steps = () => {
-    const { containerSteps, steps, line , textNotice} = styles;
+    const { containerSteps, steps, line, textNotice } = styles;
 
     const dataSteps = [
         { number: 1, content: 'Shopping cart' },
@@ -16,7 +16,12 @@ const Steps = () => {
             <div className={steps}>
                 {dataSteps.map((item, index) => (
                     <>
-                        <Steper number={item.number} content={item.content} />
+                        <Steper
+                            number={item.number}
+                            content={item.content}
+                            key={index}
+                            isDisabled={index !== 0}
+                        />
                         {index !== dataSteps.length - 1 && (
                             <div className={line}></div>
                         )}

@@ -1,12 +1,26 @@
 import React from 'react';
 import styles from '../../styles.module.scss';
+import classNames from 'classnames';
 
-const Steper = ({number, content}) => {
-    const { stepper, numberStep, textStep } = styles;
+const Steper = ({ number, content, isDisabled }) => {
+    const { stepper, numberStep, textStep, isDisableNumber, isDisableText } =
+        styles;
     return (
         <div className={stepper}>
-            <div className={numberStep}>{number}</div>
-            <div className={textStep}>{content}</div>
+            <div
+                className={classNames(numberStep, {
+                    [isDisableNumber]: isDisabled
+                })}
+            >
+                {number}
+            </div>
+            <div
+                className={classNames(textStep, {
+                    [isDisableText]: isDisabled
+                })}
+            >
+                {content}
+            </div>
         </div>
     );
 };

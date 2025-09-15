@@ -41,9 +41,19 @@
             color: $white_color;
         }
 
+        .isDisableNumber{
+            background-color: transparent;
+            border: 1px solid #e1e1e1;
+            color: #888;
+        }
+
         .textStep{
             color: $four_color;
             font-size: 16px;
+        }
+
+        .isDisableText{
+            color: #9A9A9A;
         }
     }
 }
