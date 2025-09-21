@@ -11,7 +11,7 @@ export const SideBarProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(false);
 
     const handleGetListProducCart = (userId, type) => {
-        if (userId && type === 'cart') {
+        if (userId && type === 'cart') {       
             setIsLoading(true);
             getCart(userId)
                 .then(res => {
