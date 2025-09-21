@@ -1,8 +1,8 @@
-@import '@styles/mixins.module.scss';
-@import '@styles/variables.module.scss';
+@use '@styles/mixins.module.scss' as mixins;
+@use '@styles/variables.module.scss' as vars;
 
 .container {
-    @include flex_box_custom(space-between, center, 0px);
+    @include mixins.flex_box_custom(space-between, center, 0px);
     flex-direction: column;
     padding: 30px 20px 0 20px;
     height: 90%;
@@ -15,21 +15,21 @@
     }
 
     .boxButton {
-        @include flex_box_custom(center, unset, 10px);
+        @include mixins.flex_box_custom(center, unset, 10px);
         flex-direction: column;
 
         width: 100%;
     }
 
     .boxTotal {
-        @include flex_box_custom(space-between, center, 0);
+        @include mixins.flex_box_custom(space-between, center, 0);
     }
 
     .containerListProductCart {
         position: relative;
 
         .overLoading {
-            @include flex_box_custom(center, center, 0px);
+            @include mixins.flex_box_custom(center, center, 0px);
             position: absolute;
             top: 0;
             left: 0;
@@ -42,7 +42,7 @@
     .boxEmpty{
         text-align: center;
         font-size: 14px;
-        color: $four_color;
+        color: vars.$four_color;
         margin-top: 30px;
 
         .textEmpty{
@@ -56,7 +56,7 @@
     }
 
     .containerListItem{
-        @include flex_box_custom(space-between, unset, 0px);
+        @include mixins.flex_box_custom(space-between, unset, 0px);
         flex-direction: column;
         flex-grow: 1;
     }

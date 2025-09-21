@@ -1,8 +1,8 @@
-@import '@styles/mixins.module.scss';
-@import '@styles/variables.module.scss';
+@use '@styles/mixins.module.scss' as mixins;
+@use '@styles/variables.module.scss' as vars;
 
 .container {
-    @include flex_box_custom(flex-start, center, 20px);
+    @include mixins.flex_box_custom(flex-start, center, 20px);
 }
 
 .boxImg {
@@ -46,7 +46,7 @@
     .boxIcon {
         width: 40px;
         height: 40px;
-        @include flex_box_custom(center, center, 0px);
+        @include mixins.flex_box_custom(center, center, 0px);
 
         img {
             width: 17px;
@@ -62,22 +62,22 @@
 
 .innerTitle {
     font-size: 16px;
-    color: $four_color;
+    color: vars.$four_color;
     margin: 6px 0px;
 }
 
 .innerPrice {
     font-size: 14px;
-    color: $thr_color;
+    color: vars.$thr_color;
     font-weight: 400;
 }
 
 .boxSize {
-    @include flex_box_custom(center, center, 10px);
+    @include mixins.flex_box_custom(center, center, 10px);
     padding: 5px 0;
 
     .size {
-        @include flex_box_custom(center, center, 0px);
+        @include mixins.flex_box_custom(center, center, 0px);
 
         border: 1px solid #e1e1e1;
         padding: 4px 8px;
@@ -85,14 +85,14 @@
         cursor: pointer;
 
         &:hover {
-            border: 1px solid $primary_color;
+            border: 1px solid vars.$primary_color;
             transition: border 500ms;
         }
     }
 }
 
 .isActiveSize{
-    border: 1px solid $primary_color !important;
+    border: 1px solid vars.$primary_color !important;
 }
 
 .btnClear{
@@ -112,7 +112,7 @@
 }
 
 .boxContent {
-    @include flex_box_custom(flex-start, flex-start, 10px);
+    @include mixins.flex_box_custom(flex-start, flex-start, 10px);
 
     flex-direction: column;
 }

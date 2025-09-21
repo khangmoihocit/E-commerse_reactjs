@@ -1,9 +1,8 @@
-@import '@styles/mixins.module.scss';
-@import '@styles/variables.module.scss';
+@use '@styles/mixins.module.scss' as mixins;
+@use '@styles/variables.module.scss' as vars;
 
 .container {
-    @include flex_box_custom(center, center, 0px);
-
+    @include mixins.flex_box_custom(center, center, 0px);
     left: 0;
     right: 0;
 }
@@ -19,7 +18,7 @@
     z-index: 99;
 
     background-color: #ffffffe6;
-    box-shadow: 2px 0 12px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: vars.$shadow_md;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
 
@@ -36,7 +35,7 @@
 }
 
 .containerBoxIcon {
-    @include flex_box_custom(center, center, 20px);
+    @include mixins.flex_box_custom(center, center, vars.$spacing_lg);
 
     &:hover {
         cursor: pointer;
@@ -44,17 +43,17 @@
 }
 
 .containerBox {
-    @include flex_box_custom(center, center, 20px);
+    @include mixins.flex_box_custom(center, center, vars.$spacing_lg);
 }
 
 .containerMenu {
-    @include flex_box_custom(center, center, 40px);
+    @include mixins.flex_box_custom(center, center, 40px);
 }
 
 .boxIcon {
-    @include radius_common(50%);
-    @include flex_box_custom(center, center, 0);
-    background-color: $primary_color;
+    @include mixins.radius_common(50%);
+    @include mixins.flex_box_custom(center, center, 0);
+    background-color: vars.$primary_color;
     width: 26px;
     height: 26px;
 }
@@ -63,12 +62,12 @@
     cursor: pointer;
     padding-top: 9px;
     font-size: 15px;
-    color: $primary_color;
+    color: vars.$primary_color;
     position: relative;
 
     .subMenu {
         position: absolute;
-        background-color: #fff;
+        background-color: vars.$white_color;
         width: 100%;
         padding: 10px;
         top: 40px;
@@ -80,7 +79,7 @@
     display: block;
     width: 100%;
     height: 3px;
-    background-color: $primary_color;
+    background-color: vars.$primary_color;
     margin-top: 5px;
 
     transform-origin: right;
@@ -94,18 +93,18 @@
     transform: scale(1);
 }
 
-.boxCart{
+.boxCart {
     position: relative;
     
-    .quantity{
-        @include flex_box_custom(center, center, 0px);
-        @include radius_common(50%);
+    .quantity {
+        @include mixins.flex_box_custom(center, center, 0px);
+        @include mixins.radius_common(50%);
 
         position: absolute;
         top: -10px;
         right: -10px;
-        background-color: $primary_color;
-        color: #fff;
+        background-color: vars.$primary_color;
+        color: vars.$white_color;
         width: 12px;
         height: 12px;
         padding: 3px;

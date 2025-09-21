@@ -1,8 +1,8 @@
-@import '@styles/mixins.module.scss';
-@import '@styles/variables.module.scss';
+@use '@styles/mixins.module.scss' as mixins;
+@use '@styles/variables.module.scss' as vars;
 
 .container {
-    @include flex_box_custom(center, flex-start, 25px);
+    @include mixins.flex_box_custom(center, flex-start, 25px);
 
     margin-top: 20px;
     padding: 20px;
@@ -23,12 +23,12 @@
     }
 
     .boxContent {
-        @include flex_box_custom(center, flex-start, 0px);
+        @include mixins.flex_box_custom(center, flex-start, 0px);
         flex-direction: column;
 
         .title {
             font-size: 16px;
-            color: $primary_color;
+            color: vars.$primary_color;
             width: 186px;
             white-space: nowrap;
             overflow: hidden;
@@ -43,13 +43,13 @@
 
         .price {
             font-size: 14px;
-            color: $thr_color;
+            color: vars.$thr_color;
             margin-top: 10px;
         }
     }
 
     .overLoading{
-        @include flex_box_custom(center, center, 0px);
+        @include mixins.flex_box_custom(center, center, 0px);
         position: absolute;
         top: 0;
         left: 0;
