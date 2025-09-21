@@ -1,5 +1,36 @@
+@use './variables.module.scss' as vars;
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-body{
-    font-family: "Roboto Mono", monospace;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: vars.$font_family_primary;
+    color: vars.$primary_color;
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font-family: inherit;
+}
+
+input, textarea {
+    font-family: inherit;
+}
+
+ul, ol {
+    list-style: none;
 }

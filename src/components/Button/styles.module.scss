@@ -1,10 +1,10 @@
-@import '@styles/mixins.module.scss';
-@import '@styles/variables.module.scss';
+@use '@styles/mixins.module.scss' as mixins;
+@use '@styles/variables.module.scss' as vars;
 
 .btn {
-    @include btn(100%, 42px, $primary_color, 3px);
+    @include mixins.btn(100%, 42px, vars.$primary_color, vars.$radius_sm);
     font-size: 14px;
-    font-weight: 300px;
+    font-weight: 300;
     cursor: pointer;
 
     &:hover {
@@ -13,23 +13,23 @@
 }
 
 .primaryBtn {
-    background-color: $primary_color;
-    color: $white_color;
+    background-color: vars.$primary_color;
+    color: vars.$white_color;
 
     &:hover {
         background-color: transparent;
-        color: $primary_color;
-        border: 1px solid $primary_color;
+        color: vars.$primary_color;
+        border: 1px solid vars.$primary_color;
     }
 }
 
-.seconddaryBtn {
-    background-color: $white_color;
-    color: $primary_color;
-    border: 1px solid $primary_color;
+.secondaryBtn {
+    background-color: vars.$white_color;
+    color: vars.$primary_color;
+    border: 1px solid vars.$primary_color;
 
     &:hover {
-        background-color: $primary_color;
-        color: $white_color;
+        background-color: vars.$primary_color;
+        color: vars.$white_color;
     }
 }

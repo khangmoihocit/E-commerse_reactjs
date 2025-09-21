@@ -1,23 +1,23 @@
-@import '@styles/variables.module.scss';
-@import '@styles/mixins.module.scss';
+@use '@styles/variables.module.scss' as vars;
+@use '@styles/mixins.module.scss' as mixins;
 
 .container{
-    background-color: $primary_color;
+    background-color: vars.$primary_color;
     margin-top: -75px;
     padding: 20px 50px;
-    @include flex_box_custom(space-between, center, 0px)
+    @include mixins.flex_box_custom(space-between, center, 0px)
 }
 
 .containerCard{
     width: 280px;
     height: 104px;
-    @include flex_box_custom(center, center, 15px);
+    @include mixins.flex_box_custom(center, center, 15px);
 }
 
 .containerContent{
-    @include flex_box_custom(center, flex-start, 13px);
+    @include mixins.flex_box_custom(center, flex-start, 13px);
     flex-direction: column;
-    color: $white_color;
+    color: vars.$white_color;
     font-weight: 400;
 
     .title{
