@@ -1,0 +1,1 @@
+import{j as a}from"./index-Cze8rN1G.js";const s="_wrapLayout_mwaut_1",r="_container_mwaut_6",c={wrapLayout:s,container:r},i=({children:t})=>{const{wrapLayout:n,container:o}=c;return a.jsx("main",{className:n,children:a.jsx("div",{className:o,children:t})})};export{i as M};
