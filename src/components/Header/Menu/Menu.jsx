@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import styles from '../styles.module.scss';
 import { SideBarContext } from '@/contexts/SidebarProvider';
-import { StoreContext } from '@/contexts/storeProvider';
+import { StoreContext } from '@/contexts/StoreProvider';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 

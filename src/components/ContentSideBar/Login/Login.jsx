@@ -8,7 +8,7 @@ import { ToastContext } from '@/contexts/ToastProvider';
 import { register, signIn, getInfo } from '@/apis/authService';
 import Cookies from 'js-cookie';
 import { SideBarContext } from '@/contexts/SidebarProvider';
-import { StoreContext } from '@/contexts/storeProvider';
+import { StoreContext } from '@/contexts/StoreProvider';
 
 const Login = () => {
     const { container, title, boxRememberMe, lostPw, boxButton } = styles;
