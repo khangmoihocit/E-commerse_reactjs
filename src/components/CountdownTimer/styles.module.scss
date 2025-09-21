@@ -1,5 +1,5 @@
-@import '@styles/mixins.module.scss';
-@import '@styles/variables.module.scss';
+@use '@styles/mixins.module.scss' as mixins;
+@use '@styles/variables.module.scss' as vars;
 
 .box{
     background-color: white;
@@ -10,5 +10,5 @@
 
 .title{
     font-size: 18px;
-    color: $seconddary_color;
+    color: vars.$secondary_color;
 }

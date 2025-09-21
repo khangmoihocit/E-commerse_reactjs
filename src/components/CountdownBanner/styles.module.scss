@@ -1,8 +1,8 @@
-@import '@styles/mixins.module.scss';
-@import '@styles/variables.module.scss';
+@use '@styles/mixins.module.scss' as mixins;
+@use '@styles/variables.module.scss' as vars;
 
 .container {
-    @include flex_box_custom(center, center, 20px);
+    @include mixins.flex_box_custom(center, center, 20px);
     flex-direction: column;
     background-image: url('../../../src/assets/images/photoofman.webp');
     height: 409px;
@@ -12,12 +12,12 @@
 }
 
 .containerTimer{
-    @include flex_box_custom(center, center, 10px);
+    @include mixins.flex_box_custom(center, center, 10px);
 }
 
 .title{
     font-size: 28px;
-    color: $four_color;
+    color: vars.$four_color;
     margin-bottom: 5px;
     text-align: center;
 }

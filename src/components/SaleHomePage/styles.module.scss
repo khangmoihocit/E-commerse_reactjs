@@ -1,20 +1,20 @@
-@import '@styles/mixins.module.scss';
-@import '@styles/variables.module.scss';
+@use '@styles/mixins.module.scss' as mixins;
+@use '@styles/variables.module.scss' as vars;
 
 .container {
-    @include flex_box_custom(space-between, center, 0px);
+    @include mixins.flex_box_custom(space-between, center, 0px);
     margin-top: 100px;
 
     .title {
         font-size: 35px;
-        color: $four_color;
+        color: vars.$four_color;
         font-weight: 400;
         text-align: center;
     }
 
     .desc {
         font-size: 16px;
-        color: $thr_color;
+        color: vars.$thr_color;
         font-weight: 300;
         text-align: center;
         width: 100%;
@@ -22,16 +22,16 @@
     }
 
     .boxBtn {
-        @include flex_box_custom(center, center, 0px);
+        @include mixins.flex_box_custom(center, center, 0px);
     }
 
     .boxImage {
-        @include flex_box_custom(center, center, 0px);
+        @include mixins.flex_box_custom(center, center, 0px);
         width: 100%;
     }
 
     .boxContent{
-        @include flex_box_custom(center, center, 0px);
+        @include mixins.flex_box_custom(center, center, 0px);
         flex-direction: column;
         padding: 0 15px;
     }

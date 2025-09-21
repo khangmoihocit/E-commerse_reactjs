@@ -1,11 +1,11 @@
-@import '@styles/mixins.module.scss';
-@import '@styles/variables.module.scss';
+@use '@styles/mixins.module.scss' as mixins;
+@use '@styles/variables.module.scss' as vars;
 
 .container{
-    @include flex_box_custom(space-between, center, 10px);
+    @include mixins.flex_box_custom(space-between, center, 10px);
     margin-top: 40px;
 }
 
 .containerItem{
-    @include flex_box_custom(center, center, 10px);
+    @include mixins.flex_box_custom(center, center, 10px);
 }
